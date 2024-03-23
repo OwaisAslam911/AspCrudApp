@@ -1,0 +1,59 @@
+﻿@model IEnumerable<AspCrudApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+               Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+               Quantity
+            </th>
+            <th>
+                Image
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Pid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pdescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pprice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pquantity)
+            </td>
+            <td>
+                    <img src="~/images/@Html.DisplayFor(modelItem => item.Image)" width="70px" height="70px" />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Pid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Pid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Pid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

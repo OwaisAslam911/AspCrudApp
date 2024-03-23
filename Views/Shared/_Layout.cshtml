@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asp Crud Application</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/template/css/style.css">
+</head>
+<body>
+    <header>
+    <div class="container-fluid header">
+        <div class="top-header">
+            <center>
+
+                <h2>Asp Crud Application</h2>
+            </center>
+        </div>
+        <hr>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" asp-controller="Home" asp-action="Index">Crud App</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse d-flex " id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px; justify-content: center;flex-grow: 3;">
+                  <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
+                  </li>
+                  <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Create">Add Record</a>
+                  </li>
+                 
+                
+                 
+                </ul>
+            
+                        <div class="d-flex">
+                            @if (Context.Session.GetString("mystring") != null)
+                            {
+                                <p style="color:red;display:flex;">Hello @Context.Session.GetString("mystring")</p>
+                                <a asp-controller="Home" asp-action="Logout" class="btn btn-outline-success">Logout</a>
+                            }
+                            else
+                            {
+                            <a asp-controller="Home" asp-action="Login" class="btn btn-outline-success">Login</a>
+                            }
+                        </div>
+              </div>
+            </div>
+          </nav> 
+     
+    </div>
+    </header>
+    <div class="container" >
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Asp Crud App - <a asp-area="" asp-controller="Home" asp-action="Home">Home</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
